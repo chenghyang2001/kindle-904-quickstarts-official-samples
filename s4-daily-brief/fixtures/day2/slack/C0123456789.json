@@ -1,0 +1,28 @@
+{
+  "_comment": "虛構但照官方格式：外層 ok／messages 與 oldest 書籤出自官方 agent.md 第 41、51 行；訊息只用 ts、user、text、permalink 四欄（官方未列訊息欄位，報告未載明）",
+  "ok": true,
+  "channel": {
+    "id": "C0123456789",
+    "name": "example-support"
+  },
+  "messages": [
+    {
+      "ts": "1795389900.000400",
+      "user": "U0222222222",
+      "text": "<@U0456789123> 客戶 Beta 的 SSO 設定卡住了，等你確認要不要給他們延長試用兩週。",
+      "permalink": "https://example.slack.com/archives/C0123456789/p1795389900000400"
+    },
+    {
+      "ts": "1795430000.000500",
+      "user": "U0333333333",
+      "text": "提醒：今天的週會改到下午三點。",
+      "permalink": "https://example.slack.com/archives/C0123456789/p1795430000000500"
+    },
+    {
+      "ts": "1795460000.000600",
+      "user": "U0222222222",
+      "text": "<@U0456789123> 客戶 Acme 的退款你核准了，財務已處理完畢，謝謝！",
+      "permalink": "https://example.slack.com/archives/C0123456789/p1795460000000600"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "agent": "daily-brief",
+  "official_deployment": "managed-agents/daily-brief/agents/daily-brief/deployment.md",
+  "schedule": {
+    "type": "cron",
+    "expression": "32 7 * * 1-5",
+    "timezone": "Asia/Taipei",
+    "official_timezone": "America/New_York"
+  },
+  "task_name": "K904-S4-daily-brief",
+  "preferences_access": "read_only",
+  "state_access": "read_write",
+  "first_message": "寫今天的簡報。讀者時區是 Asia/Taipei，所有日期都用這個時區算。照步驟順序做。",
+  "budget_note": "本機版沒有花費上限，只用 MAX_MODEL_CALLS = 4 限次數；官方雲端版 budget.max_list_cost.amount 是以「分」為單位的字串，\"500\" 是每次 5.00 美元，到上限是暫停不是失敗；官方 README 實測約 1.00～1.50 美元／次"
+}

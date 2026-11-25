@@ -1,0 +1,50 @@
+{
+  "_comment": "虛構但照官方格式：html_url 出自官方 agent.md 第 55 行；number、title、state、author、requested_reviewers、updated_at 為本範例自訂（官方由 GitHub MCP 回傳，repo 未列格式，報告未載明）",
+  "repo": "example-org/example-repo",
+  "pull_requests": [
+    {
+      "number": 101,
+      "title": "修正登入逾時造成的重複扣款",
+      "state": "open",
+      "author": "alice-dev",
+      "requested_reviewers": [
+        "your-login"
+      ],
+      "updated_at": "2026-11-22T18:10:00+08:00",
+      "html_url": "https://github.com/example-org/example-repo/pull/101"
+    },
+    {
+      "number": 102,
+      "title": "升級付款 SDK 到 v5",
+      "state": "open",
+      "author": "bob-dev",
+      "requested_reviewers": [
+        "your-login"
+      ],
+      "updated_at": "2026-11-22T20:45:00+08:00",
+      "html_url": "https://github.com/example-org/example-repo/pull/102"
+    },
+    {
+      "number": 103,
+      "title": "Bump lodash from 4.17.20 to 4.17.21",
+      "state": "open",
+      "author": "dependabot[bot]",
+      "requested_reviewers": [
+        "your-login"
+      ],
+      "updated_at": "2026-11-23T01:00:00+08:00",
+      "html_url": "https://github.com/example-org/example-repo/pull/103"
+    },
+    {
+      "number": 104,
+      "title": "調整 README 排版",
+      "state": "open",
+      "author": "carol-dev",
+      "requested_reviewers": [
+        "dave-dev"
+      ],
+      "updated_at": "2026-11-22T16:00:00+08:00",
+      "html_url": "https://github.com/example-org/example-repo/pull/104"
+    }
+  ]
+}

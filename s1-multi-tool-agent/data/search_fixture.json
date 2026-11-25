@@ -1,0 +1,286 @@
+{
+ "_note": "逐字取自官方 claude-quickstarts/agents/agent_demo.ipynb 已存檔的 brave_web_search 工具結果（commit 4a4224b）。不是虛構資料；但用查詢字串比對存檔結果的搜尋邏輯是 K904 的替代做法，官方未載明。source_line 是筆記本檔案的行號。",
+ "source": "claude-quickstarts/agents/agent_demo.ipynb",
+ "results": [
+  {
+   "query": "Oklahoma City population 2022 census data",
+   "title": "Oklahoma Cities by Population (2025)",
+   "source_line": 157,
+   "description": "The most populous cities in Oklahoma are <strong>Oklahoma City with 702,767</strong>, Tulsa at 411,894, Norman with 130,046, Broken Arrow at 119,194, and Edmond with 98,103. You can get the most current Census population data for all 834 Oklahoma cities, sorted from the most populous cities in Oklahoma to the ...",
+   "url": "https://www.oklahoma-demographics.com/cities_by_population"
+  },
+  {
+   "query": "Oklahoma City population 2022 census data",
+   "title": "U.S. Census Bureau QuickFacts: Oklahoma City city, Oklahoma",
+   "source_line": 161,
+   "description": "QuickFacts provides statistics for all states and counties. Also for cities and towns with a population of <strong>5,000 or more</strong>. ... Methodology differences may exist between data sources, and so estimates from different sources are not comparable.",
+   "url": "https://www.census.gov/quickfacts/fact/table/oklahomacitycityoklahoma/PST045224"
+  },
+  {
+   "query": "Oklahoma City population 2022 census data",
+   "title": "Oklahoma City lands in top 20 of largest US cities by population: New census data",
+   "source_line": 165,
+   "description": "More: 10 Oklahoma cities where population is growing the fastest · Oklahoma City grew by about 1% between 2022 and 2023, adding <strong>7,589 people</strong>. And between the 2010 and 2020 Censuses, Oklahoma City was one of 14 American cities that added more than 100,000 people.",
+   "url": "https://www.oklahoman.com/story/news/2024/05/17/oklahoma-city-population-top-20-us-census-data-growth/73729737007/"
+  },
+  {
+   "query": "Oklahoma City population 2022 census data",
+   "title": "Oklahoma City - Wikipedia",
+   "source_line": 169,
+   "description": "Oklahoma City (/ˌoʊkləˈhoʊmə ... it ranks 20th in population among U.S. cities and 8th in the Southern United States, with a population of <strong>681,054 at the 2020 census</strong>....",
+   "url": "https://en.wikipedia.org/wiki/Oklahoma_City"
+  },
+  {
+   "query": "Oklahoma City population 2022 census data",
+   "title": "Oklahoma City city, Oklahoma - Census Bureau Profile",
+   "source_line": 173,
+   "description": "We&#x27;re sorry but this website doesn&#x27;t work properly without JavaScript enabled. Please enable it to continue",
+   "url": "https://data.census.gov/profile/Oklahoma_City_city,_Oklahoma?g=160XX00US4055000"
+  },
+  {
+   "query": "Oklahoma City population 2022 census data",
+   "title": "Oklahoma City, Oklahoma Population 2025",
+   "source_line": 177,
+   "description": "Oklahoma City is a city located in Cleveland County, Oklahoma. Oklahoma City has a <strong>2025 population of 715,893</strong>. Oklahoma City is currently growing at a rate of 0.93% annually and its population has increased by 4.8% since the most recent census, which recorded a population of 683,078 in 2020.",
+   "url": "https://worldpopulationreview.com/us-cities/oklahoma/oklahoma-city"
+  },
+  {
+   "query": "Oklahoma City population 2022 census data",
+   "title": "Oklahoma Demographics | Current Census Data",
+   "source_line": 181,
+   "description": "Get the Oklahoma demographic data that you need. You can get the most current Oklahoma data from the US Census Bureau without spending 40 high-value hours searching the internet. The Oklahoma population is <strong>4,053,824 people</strong> according to the US Census Bureau&#x27;s 2023 Population Estimates Program.",
+   "url": "https://www.oklahoma-demographics.com/"
+  },
+  {
+   "query": "Oklahoma City population 2022 census data",
+   "title": "Oklahoma City, OK - Profile data - Census Reporter",
+   "source_line": 185,
+   "description": "a little less than the figure in the Oklahoma City, OK Metro Area: <strong>23.5 14,717,310</strong> (±0.2 / ±145,724)",
+   "url": "https://censusreporter.org/profiles/16000US4055000-oklahoma-city-ok/"
+  },
+  {
+   "query": "Oklahoma City population 2022 census data",
+   "title": "Oklahoma population by year, county, race, & more | USAFacts",
+   "source_line": 189,
+   "description": "The ages, races, and <strong>population</strong> density of <strong>Oklahoma</strong> tell a story. Understand the shifts in demographic trends with these charts visualizing decades of <strong>population</strong> <strong>data</strong>. ... Florida K-12 public teachers are paid the lowest average salary when adjusted for cost of living.Published on November 8, <strong>2022</strong> ... <strong>The</strong> <strong>Census</strong> ...",
+   "url": "https://usafacts.org/data/topics/people-society/population-and-demographics/our-changing-population/state/oklahoma/"
+  },
+  {
+   "query": "Oklahoma City population 2022 census data",
+   "title": "Resident Population in Oklahoma City, OK (MSA) (OKCPOP) | FRED | St. Louis Fed",
+   "source_line": 193,
+   "description": "Graph and download economic <strong>data</strong> for Resident <strong>Population</strong> <strong>in</strong> <strong>Oklahoma</strong> <strong>City</strong>, OK (MSA) (OKCPOP) from 2000 to 2024 about <strong>Oklahoma</strong> <strong>City</strong>, OK, residents, <strong>population</strong>, and USA.",
+   "url": "https://fred.stlouisfed.org/series/OKCPOP"
+  },
+  {
+   "query": "Oklahoma City population 2022 exact figure",
+   "title": "Oklahoma City, Oklahoma Population 2025",
+   "source_line": 207,
+   "description": "Oklahoma City is a city located in Cleveland County, Oklahoma. Oklahoma City has a <strong>2025 population of 715,893</strong>.",
+   "url": "https://worldpopulationreview.com/us-cities/oklahoma/oklahoma-city"
+  },
+  {
+   "query": "Oklahoma City population 2022 exact figure",
+   "title": "Oklahoma City Metro Area Population 1950-2025",
+   "source_line": 211,
+   "description": "The metro area population of Oklahoma City in 2022 was <strong>1,008,000</strong>, a 1% increase from 2021.",
+   "url": "https://www.macrotrends.net/cities/23088/oklahoma-city/population"
+  },
+  {
+   "query": "Oklahoma City population 2022 exact figure",
+   "title": "Oklahoma City city, Oklahoma - Census Bureau Profile",
+   "source_line": 215,
+   "description": "We&#x27;re sorry but this website doesn&#x27;t work properly without JavaScript enabled. Please enable it to continue",
+   "url": "https://data.census.gov/profile/Oklahoma_City_city,_Oklahoma?g=160XX00US4055000"
+  },
+  {
+   "query": "Oklahoma City population 2022 exact figure",
+   "title": "Oklahoma City - Wikipedia",
+   "source_line": 219,
+   "description": "The Oklahoma City metropolitan area has an estimated <strong>1.49 million</strong> residents, the largest metropolitan area in the state and 42nd-most populous in the nation. The city limits extend into Canadian, Cleveland, and Pottawatomie counties; however, areas beyond Oklahoma County primarily consist of ...",
+   "url": "https://en.wikipedia.org/wiki/Oklahoma_City"
+  },
+  {
+   "query": "Oklahoma City population 2022 exact figure",
+   "title": "U.S. Census Bureau QuickFacts: Oklahoma City city, Oklahoma",
+   "source_line": 223,
+   "description": "QuickFacts provides statistics for all states and counties. Also for cities and towns with a population of <strong>5,000 or more</strong>.",
+   "url": "https://www.census.gov/quickfacts/oklahomacitycityoklahoma"
+  },
+  {
+   "query": "Oklahoma City population 2022 exact figure",
+   "title": "Oklahoma City, OK | Data USA",
+   "source_line": 227,
+   "description": "As of 2023, 12% of Oklahoma City, OK residents <strong>(82.6k people</strong>) were born outside of the United States, which is lower than the national average of 13.8%. In 2022, the percentage of foreign-born citizens in Oklahoma City, OK was 11.8%, meaning that the rate has been increasing.",
+   "url": "https://datausa.io/profile/geo/oklahoma-city-ok"
+  },
+  {
+   "query": "Oklahoma City population 2022 exact figure",
+   "title": "Oklahoma City lands in top 20 of largest US cities by population: New census data",
+   "source_line": 231,
+   "description": "More: 10 Oklahoma cities where population is growing the fastest · Oklahoma City grew by about 1% between 2022 and 2023, adding <strong>7,589 people</strong>.",
+   "url": "https://www.oklahoman.com/story/news/2024/05/17/oklahoma-city-population-top-20-us-census-data-growth/73729737007/"
+  },
+  {
+   "query": "Oklahoma City population 2022 exact figure",
+   "title": "Oklahoma Cities by Population (2025)",
+   "source_line": 235,
+   "description": "The most populous cities in Oklahoma are Oklahoma City with <strong>702,767</strong>, Tulsa at 411,894, Norman with 130,046, Broken Arrow at 119,194, and Edmond with 98,103.",
+   "url": "https://www.oklahoma-demographics.com/cities_by_population"
+  },
+  {
+   "query": "Oklahoma City population 2022 exact figure",
+   "title": "Oklahoma City, OK",
+   "source_line": 239,
+   "description": "Oklahoma City, Oklahoma has a population of <strong>688,700</strong>. The median household income is $66,700 and 15% of residents live below the federal poverty level. The racial and ethnic composition is 22% Hispanic, 51% White, 13% Black, 4% Asian and 2% American Indian or Alaska Native.",
+   "url": "https://bigcitieshealthdata.org/city/oklahoma-city-ok/"
+  },
+  {
+   "query": "Oklahoma City population 2022 exact figure",
+   "title": "Oklahoma Cities by Population 2025",
+   "source_line": 243,
+   "description": "Oklahoma City is the biggest city in Oklahoma, with a population of <strong>715,893 in 2025</strong>.",
+   "url": "https://worldpopulationreview.com/us-cities/oklahoma"
+  },
+  {
+   "query": "Toyota GR86 cargo capacity trunk volume",
+   "title": "Cargo space. What can it fit? : r/GR86",
+   "source_line": 318,
+   "description": "11 votes, 36 comments. 42K subscribers in the <strong>GR86</strong> community. For anyone interested in the <strong>Toyota</strong> <strong>GR86</strong> &amp; Subaru BRZ (&#x27;22+).",
+   "url": "https://www.reddit.com/r/GR86/comments/16xh6ii/cargo_space_what_can_it_fit/"
+  },
+  {
+   "query": "Toyota GR86 cargo capacity trunk volume",
+   "title": "2024 Toyota GR86 Review, Pricing, and Specs",
+   "source_line": 322,
+   "description": "The 2024 <strong>Toyota</strong> <strong>GR86</strong> turns every day into an autocross day thanks to its playful chassis and easy-to-slide rear-wheel drive antics.",
+   "url": "https://www.caranddriver.com/toyota/gr-86/specs"
+  },
+  {
+   "query": "Toyota GR86 cargo capacity trunk volume",
+   "title": "2023 Toyota GR86 Interior, Cargo Space & Seating | U.S. News",
+   "source_line": 326,
+   "description": "&quot;You might not think practicality was a consideration with the GR86, but it is surprisingly useful for weekly errands. Its relatively small <strong>6.3 cubic feet</strong> of trunk space is hampered by its short height. But when the seats are folded, Toyota says the GR86 can hold a set of its own replacement ...",
+   "url": "https://cars.usnews.com/cars-trucks/toyota/gr86/2023/interior"
+  },
+  {
+   "query": "Toyota GR86 cargo capacity trunk volume",
+   "title": "2025 Toyota GR86 Review, Pricing, and Specs",
+   "source_line": 330,
+   "description": "DIMENSIONS Wheelbase: 101.4 in Length: 167.9 in Width: 69.9 in Height: 51.6 in Passenger Volume: <strong>78 ft3 Trunk Volume: 6 ft3</strong> Curb Weight: 2838 lb · C/D TEST RESULTS 60 mph: 5.4 sec 100 mph: 13.8 sec 1/4-Mile: 14.0 sec @ 101 mph 130 mph: 27.2 sec Results above omit 1-ft rollout of 0.3 sec.",
+   "url": "https://www.caranddriver.com/toyota/gr-86"
+  },
+  {
+   "query": "Toyota GR86 cargo capacity trunk volume",
+   "title": "Toyota GR86 dimensions, boot space and similars",
+   "source_line": 334,
+   "description": "<strong>Toyota</strong> <strong>GR86</strong> dimensions with interior photos, boot space and measurements of length, width and height. Previous cars and similars in size.",
+   "url": "https://www.automobiledimension.com/model/toyota/gr86"
+  },
+  {
+   "query": "Toyota GR86 cargo capacity trunk volume",
+   "title": "Trunk Size | Toyota GR86 Forum - GT86 Forum, Subaru BRZ Forum, Scion ...",
+   "source_line": 338,
+   "description": "It still surprises me that I can fit so much in the <strong>trunk</strong>. I am able to fit my entire paintball gear bag, pods, cleats, 2 cases of paint, mask case, small ice chest, and my extra clothes and smaller items. Gotta enjoy the little things with these beautiful cars!",
+   "url": "https://www.gr86.org/threads/trunk-size.8574/"
+  },
+  {
+   "query": "Toyota GR86 cargo capacity trunk volume",
+   "title": "Toyota GR86 Cargo Space | Toyota GR86 Forum - GT86 Forum, Subaru BRZ Forum, Scion ...",
+   "source_line": 342,
+   "description": "Not sure if serious or market differences, but it is mandated in all cars in the U.S. if the <strong>trunk</strong> is much bigger than a shoebox lol. ... This is an older thread, you may not receive a response, and could be reviving an old thread. Please consider creating a new thread. ... <strong>Toyota</strong> <strong>GR86</strong> Forum ...",
+   "url": "https://www.gr86.org/threads/toyota-gr86-cargo-space.372/"
+  },
+  {
+   "query": "Toyota GR86 cargo capacity trunk volume",
+   "title": "GR86 - GR86 Boot Dimensions | Toyota GR Forum for owners of GR Yaris, GR86, GR Supra and GR Corolla",
+   "source_line": 346,
+   "description": "During my time with the GR86, I tried to take accurate measurements of the boot dimensions (in centimetres), as shown below. Sorry the pictures are not exactly to scale - my MS Paint skills are rather limited! = The boot opening is <strong>60cm at its narrowest (at the bottom), 80cm at the widest</strong>...",
+   "url": "https://www.gr-zoo.com/threads/gr86-boot-dimensions.2567/"
+  },
+  {
+   "query": "Toyota GR86 cargo capacity trunk volume",
+   "title": "2025 Toyota GR86 Interior, Cargo Space & Seating | U.S. News",
+   "source_line": 350,
+   "description": "Few sports cars have large trunks, and the GR86 is no exception. It has just <strong>6.3 cubic feet</strong> of trunk space, which is not much even for this class. You can fit several grocery bags or a couple of carry-on bags with the rear seats upright.",
+   "url": "https://cars.usnews.com/cars-trucks/toyota/gr86/interior"
+  },
+  {
+   "query": "Toyota GR86 cargo capacity trunk volume",
+   "title": "Toyota GR86 (2025) boot space & practicality",
+   "source_line": 354,
+   "description": "Read what our experts think about the <strong>Toyota</strong> <strong>GR86</strong>&#x27;s practicality, boot size and overall dimensions, how it compares to its rivals and more.",
+   "url": "https://www.parkers.co.uk/toyota/gr86/review/practicality/"
+  },
+  {
+   "query": "average banana size dimensions volume",
+   "title": "Banana for scale - Universal converter - Unit conversion for all!",
+   "source_line": 362,
+   "description": "Introducing the <strong>banana</strong> as the universal measurement unit, all conversion-related confusion can be avoided. Use this handy app to convert imperial and metric measurements to universal <strong>bananas</strong>.",
+   "url": "http://bananaforscale.info/"
+  },
+  {
+   "query": "average banana size dimensions volume",
+   "title": "How big is a banana? - Quora",
+   "source_line": 366,
+   "description": "Answer (1 of 10): How big is a <strong>banana</strong>? Is that your <strong>banana</strong> or my <strong>banana</strong>? Musa Ingens, the world&#x27;s largest <strong>banana</strong> tree growing in the forest of Papua New Guinea and Indonesia. It is the tallest species of <strong>bananas</strong> and the world&#x27;s largest herbaceous plant. The <strong>size</strong> of the Musa Ingens <strong>banana</strong> is imp...",
+   "url": "https://www.quora.com/How-big-is-a-banana"
+  },
+  {
+   "query": "average banana size dimensions volume",
+   "title": "How Many Calories and Carbs Are in a Banana?",
+   "source_line": 370,
+   "description": "<strong>Bananas</strong> are extremely healthy and nutritious. Most people know this, but many wonder how many calories and carbs <strong>bananas</strong> contain.",
+   "url": "https://www.healthline.com/nutrition/bananas-calories-carbs"
+  },
+  {
+   "query": "average banana size dimensions volume",
+   "title": "Banana - Wikipedia",
+   "source_line": 374,
+   "description": "As of 2018, <strong>bananas</strong> are exported in larger <strong>volume</strong> and to a larger value than any other fruit. In 2022, world production of <strong>bananas</strong> and plantains combined was 179 million tonnes, led by India and China with a combined total of 26% of global production. Other major producers were Uganda, Indonesia, ...",
+   "url": "https://en.wikipedia.org/wiki/Banana"
+  },
+  {
+   "query": "average banana size dimensions volume",
+   "title": "On the Usefulness of Bananas: A New System of Measurement | by Liam Foley | Medium",
+   "source_line": 378,
+   "description": "According to a study conducted by Mahmoud Soltani of the University of Tehran, on average, a fully ripe banana fruit of the Cavendish variety measures 200.25 millimetres in length, with a mass of 180.56 grams, and an ellipsoid volume of <strong>156.10 cubic centimetres</strong>.",
+   "url": "https://medium.com/@liamfoley2430/on-the-usefulness-of-bananas-a-new-system-of-measurement-76c50d8bb89a"
+  },
+  {
+   "query": "average banana size dimensions volume",
+   "title": "Banana-based Length & Distance Unit Converter | Convert To Bananas",
+   "source_line": 382,
+   "description": "Convert any length to <strong>bananas</strong> (and to useful units as well)",
+   "url": "https://www.converttobananas.com/"
+  },
+  {
+   "query": "average banana size dimensions volume",
+   "title": "r/atlanticdiscussions on Reddit: HOW LONG IS THE, UM, AVERAGE BANANA? And why do you all want to know so bad?",
+   "source_line": 386,
+   "description": "As a writer on the internet, I often feel as though I’m getting a peek into the American mind. Recently, while looking at search data, I discovered…",
+   "url": "https://www.reddit.com/r/atlanticdiscussions/comments/pbenqf/how_long_is_the_um_average_banana_and_why_do_you/"
+  },
+  {
+   "query": "average banana size dimensions volume",
+   "title": "How Long Is the, Um, Average Banana?",
+   "source_line": 390,
+   "description": "<strong>Bananas</strong> come in a total of five <strong>sizes</strong> — extra small, small, medium, large and extra large. But how long is the <strong>average</strong> <strong>banana</strong>?",
+   "url": "https://melmagazine.com/en-us/story/how-long-is-a-banana"
+  },
+  {
+   "query": "average banana size dimensions volume",
+   "title": "r/theydidthemath on Reddit: [Request] Assuming the bananas are normal size how many rooms would 102,769 bananas fill?",
+   "source_line": 394,
+   "description": "The average volume of a banana is <strong>156.1 cm³</strong>. Assuming you mean whole, uncrushed bananas, google search results peg the packing effeciency around 65%.",
+   "url": "https://www.reddit.com/r/theydidthemath/comments/rdiyis/request_assuming_the_bananas_are_normal_size_how/"
+  },
+  {
+   "query": "average banana size dimensions volume",
+   "title": "How big is your banana?",
+   "source_line": 398,
+   "description": "BMI Calculator Enter your details: Height (cm): Weight (kg): BMI (kg/m2) is Category is",
+   "url": "https://healthieryou.net.au/wp-content/uploads/2015/11/How-big-is-your-banana-Article.pdf"
+  }
+ ]
+}

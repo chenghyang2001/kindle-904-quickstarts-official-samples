@@ -1,0 +1,37 @@
+# claude-progress.txt（每個 session 由 harness 追加）
+
+## Session 1：初始化
+
+寫入：tests/__init__.py, tests/test_f1.py, tests/test_f2.py, tests/test_f3.py, tests/test_f4.py, tests/test_f5.py, init.sh
+
+已依規格產出 5 項 feature（F1～F5），每項各有一個測試模組 tests/test_f1.py～tests/test_f5.py，另有 tests/__init__.py 與 init.sh。init.sh 只有規則允許的指令：顯示 Python 版本，並執行 python -m unittest discover -s tests。chat_store.py 尚未建立，所以目前所有測試都會因 ImportError 失敗，這是預期中的狀態。給寫程式的代理：請在專案根目錄建立 chat_store.py，只用 sqlite3 與 datetime，SQL 一律參數化。建議依序實作：(1) 先做 F1：__init__ 建兩張表、close、create_conversation、add_message、get_conversation、list_conversations。is_deleted 回傳時要轉成 bool；時間用 isoformat(timespec='seconds')；排序用 ORDER BY updated_at DESC, id DESC。(2) F2 與 F3 很小，可以一起做：改名要更新 updated_at，刪除是軟刪除。(3) F4 搜尋：先把 query 裡的反斜線、%、_ 各自加上反斜線跳脫（反斜線要最先處理），再用 LIKE ? ESCAPE 反斜線；用 EXISTS 子查詢或 DISTINCT 避免同一對話重複出現。(4) F5 的 group_by_date 是純函式，可用 datetime.fromisoformat 取出日期再比較。完成後執行 init.sh 確認全部測試通過。
+
+## Session 2：F1 通過
+
+寫入：chat_store.py
+
+F1 已完成：chat_store.py 內有 ChatStore 的建表、close、create/add_message/get/list，每次寫入後都 commit，_fetch_active 用來檢查對話存在且未刪除。group_by_date 目前只是 stub（會丟 NotImplementedError），F2～F5 都還沒做，下一棒可以直接沿用 _clean_title、_ts 與 _fetch_active。
+
+## Session 3：F2 通過
+
+寫入：chat_store.py
+
+F2 完成：rename_conversation 會先 strip 標題（空標題丟 ValueError），再用 _fetch_active 確認對話存在（不存在或已刪除丟 KeyError），接著更新 title 與 updated_at，最後讀回並回傳。F2 的測試需要 delete_conversation，所以也實作了軟刪除（只設 is_deleted = 1，不改 updated_at），但還沒跑 test_f3 驗證；下一棒做 F3 時先確認它，再做 F4 search 與 F5 group_by_date。
+
+## Session 4：F3 通過
+
+寫入：chat_store.py
+
+F3 完成：delete_conversation 為軟刪除（不存在或已刪除丟 KeyError，只設 is_deleted = 1）。因為 test_f3 會呼叫 search_conversations，所以已先依 F4 規格實作：strip 查詢字串，跳脫反斜線、% 與 _ 後用 LIKE ESCAPE 比對，再以 EXISTS 子查詢比對訊息內容。下一棒請跑 test_f4 驗證，然後實作 F5 的 group_by_date（目前仍是 stub）。
+
+## Session 5：F4 通過
+
+寫入：chat_store.py
+
+F4 的 search_conversations 在 Session 4 已經實作，這一棒對照 test_f4 逐項檢查過程式碼後沒有改邏輯，只更新了 docstring。不過這個 session 我沒辦法真的執行 test_f4，F4 是否通過要看 harness 跑的結果。init.sh 那 10 個 errors 推測是 test_f5 的 10 個測試碰到 group_by_date 的 NotImplementedError，這一點也還沒確認。下一棒請先跑 test_f4 確認，再實作 F5 的 group_by_date：用 datetime.fromisoformat(updated_at).date() 和 now.date() 相減取 days，依固定順序 Today、Yesterday、Previous 7 days、Older 輸出，省略空群組。
+
+## Session 6：F5 通過
+
+寫入：chat_store.py
+
+F5 完成：group_by_date 用 datetime.fromisoformat(updated_at).date() 與 now.date() 相減取 days，依 Today/Yesterday/Previous 7 days/Older 固定順序輸出並省略空群組；F1～F4 程式碼未改動，五項功能應已全部實作，請跑 init.sh 確認全部通過。

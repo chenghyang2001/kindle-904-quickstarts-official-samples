@@ -1,0 +1,122 @@
+<!--
+  縮小版，照官方格式。
+  原文出自 claude-quickstarts autonomous-coding/prompts/app_spec.txt 第 556～567 行
+  （implementation_steps 第 3 步「Conversation Management」），資料表欄位取自第 215～229 行。
+  只做這一步的資料層（Python 標準庫 sqlite3），不做前端、Express、SSE、Claude API。
+  標「自訂」的地方是官方規格未載明、本教材自己補的。
+-->
+<project_specification>
+  <project_name>Claude.ai Clone - Conversation Management (data layer only)</project_name>
+
+  <overview>
+    Build the conversation-management data layer of the claude.ai clone: create, list, rename,
+    soft-delete, search and date-group conversations. Everything lives in ONE module, chat_store.py,
+    backed by SQLite through the Python standard library. No UI, no web server, no network.
+  </overview>
+
+  <technology_stack>
+    <runtime>Python 3 standard library only (sqlite3, datetime). No third-party packages.</runtime>
+    <database>SQLite file whose path is passed to ChatStore(db_path); ":memory:" must also work</database>
+    <testing>python -m unittest (tests/ written by the initializer agent)</testing>
+  </technology_stack>
+
+  <interface>
+    File: chat_store.py (module name chat_store)
+
+    Timestamps are ISO 8601 strings without timezone, format "YYYY-MM-DDTHH:MM:SS"
+    (datetime.isoformat(timespec="seconds")). Every method that writes takes an optional
+    keyword argument now: datetime | None; when None use datetime.now(). Tests always pass now.
+
+    A conversation is returned as a plain dict with exactly these keys:
+      {"id": int, "title": str, "created_at": str, "updated_at": str, "is_deleted": bool}
+    A message is returned as a plain dict:
+      {"id": int, "conversation_id": int, "role": str, "content": str, "created_at": str}
+
+    class ChatStore:
+      __init__(self, db_path: str)                -> opens the db and creates both tables if missing
+      close(self) -> None
+      create_conversation(self, title: str = "New Conversation", *, now=None) -> dict
+          created_at == updated_at == now; is_deleted False.
+          title is stripped; empty after strip -> ValueError.
+      add_message(self, conversation_id: int, role: str, content: str, *, now=None) -> dict
+          role must be one of "user", "assistant", "system" else ValueError.
+          Also sets the conversation's updated_at to now.
+          Unknown or deleted conversation -> KeyError.
+      get_conversation(self, conversation_id: int) -> dict
+          Unknown or deleted conversation -> KeyError.
+      list_conversations(self) -> list[dict]
+          Not-deleted conversations only, ordered by updated_at DESC, ties broken by id DESC.
+      rename_conversation(self, conversation_id: int, title: str, *, now=None) -> dict
+          title stripped; empty -> ValueError; unknown or deleted -> KeyError.
+          Sets updated_at to now; returns the updated conversation.
+      delete_conversation(self, conversation_id: int, *, now=None) -> None
+          Soft delete: sets is_deleted = 1 (row and messages stay in the db).
+          Unknown or already deleted -> KeyError.
+      search_conversations(self, query: str) -> list[dict]
+          Not-deleted conversations whose title OR any message content contains query as a
+          literal substring. Case-insensitive for ASCII letters (SQLite LIKE default).
+          The characters % _ and \ in query are matched literally (escape them; parameterized SQL).
+          Each conversation appears once. Same ordering as list_conversations.
+          query stripped; empty query -> returns [].
+
+    def group_by_date(conversations: list[dict], now: datetime) -> list[dict]   (module-level function)
+      Groups by the DATE part of updated_at compared with now.date():
+        days = (now.date() - updated_date).days
+        days <= 0      -> "Today"        (future dates also count as Today; 自訂)
+        days == 1      -> "Yesterday"
+        2 <= days <= 7 -> "Previous 7 days"   (exactly 7 days ago is still in this group; 自訂)
+        days > 7       -> "Older"        (自訂：官方只寫 "etc.")
+      Returns [{"group": name, "conversations": [...]}, ...] in the fixed order
+      Today, Yesterday, Previous 7 days, Older; empty groups are omitted.
+      Inside a group keep the input order. Does not touch the database.
+  </interface>
+
+  <core_features>
+    <conversation_management>
+      - F1 Create new conversations / Conversation list in sidebar (create_conversation, add_message,
+        get_conversation, list_conversations ordered by updated_at newest first)
+      - F2 Rename conversations (rename_conversation also updates updated_at)
+      - F3 Delete conversations (soft delete via is_deleted; hidden from list and search)
+      - F4 Search conversations by title/content (search_conversations, literal % and _, UTF-8 Chinese)
+      - F5 Conversations list grouped by date: Today, Yesterday, Previous 7 days, etc. (group_by_date)
+    </conversation_management>
+  </core_features>
+
+  <database_schema>
+    <tables>
+      <conversations>
+        - id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL
+        - created_at TEXT NOT NULL, updated_at TEXT NOT NULL
+        - is_deleted INTEGER NOT NULL DEFAULT 0
+      </conversations>
+      <messages>
+        - id INTEGER PRIMARY KEY AUTOINCREMENT, conversation_id INTEGER NOT NULL
+        - role TEXT NOT NULL (user/assistant/system), content TEXT NOT NULL, created_at TEXT NOT NULL
+      </messages>
+    </tables>
+  </database_schema>
+
+  <implementation_steps>
+    <step number="3">
+      <title>Conversation Management</title>
+      <tasks>
+        - F1 Create conversation list / Implement new conversation creation
+        - F2 Build conversation rename functionality
+        - F3 Implement delete (soft delete; the confirmation dialog is UI and out of scope)
+        - F4 Add conversation search
+        - F5 Create conversation grouping by date
+      </tasks>
+    </step>
+  </implementation_steps>
+
+  <success_criteria>
+    <functionality>
+      - Exactly 5 features F1..F5, each verified by its own test module tests/test_fN.py
+      - python -m unittest discover -s tests passes
+    </functionality>
+    <technical_quality>
+      - Parameterized SQL only (no string-formatted queries)
+      - Clear exceptions (ValueError / KeyError) instead of silent failures
+    </technical_quality>
+  </success_criteria>
+</project_specification>

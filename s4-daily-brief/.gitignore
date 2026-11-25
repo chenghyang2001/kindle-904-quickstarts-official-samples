@@ -1,0 +1,4 @@
+# S4 執行期產物（根目錄 .gitignore 已排除 */runs/；state 與 outbox 是本範例特有的）
+state/
+outbox/
+runs/

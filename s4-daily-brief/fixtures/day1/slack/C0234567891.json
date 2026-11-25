@@ -1,0 +1,5 @@
+{
+  "_comment": "虛構但照官方格式：外層 ok／messages 與 oldest 書籤出自官方 agent.md 第 41、51 行；訊息只用 ts、user、text、permalink 四欄（官方未列訊息欄位，報告未載明）；本檔模擬讀取失敗：HTTP 200 但 ok 為 false（錯誤代碼出自官方 agent.md 第 59 行）",
+  "ok": false,
+  "error": "not_in_channel"
+}

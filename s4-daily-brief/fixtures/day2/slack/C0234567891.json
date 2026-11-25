@@ -1,0 +1,22 @@
+{
+  "_comment": "虛構但照官方格式：外層 ok／messages 與 oldest 書籤出自官方 agent.md 第 41、51 行；訊息只用 ts、user、text、permalink 四欄（官方未列訊息欄位，報告未載明）",
+  "ok": true,
+  "channel": {
+    "id": "C0234567891",
+    "name": "example-escalations"
+  },
+  "messages": [
+    {
+      "ts": "1795372000.000100",
+      "user": "U0444444444",
+      "text": "付款服務 11/22 晚上 23:00 的事故：根因報告草稿要等 <@U0456789123> 今天審核後才能對外發布。",
+      "permalink": "https://example.slack.com/archives/C0234567891/p1795372000000100"
+    },
+    {
+      "ts": "1795470000.000200",
+      "user": "U0444444444",
+      "text": "倉儲 API 錯誤率已回到正常，事故結案，不需要任何動作。",
+      "permalink": "https://example.slack.com/archives/C0234567891/p1795470000000200"
+    }
+  ]
+}

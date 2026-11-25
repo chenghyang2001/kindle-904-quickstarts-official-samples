@@ -1,0 +1,6 @@
+dbbd407 完成 F5：依日期分組對話清單。測試驗證 group_by_date 以 updated_at 的日期部分與 now.date() 比較，分成 Today、Yesterda
+38251ce 完成 F4：依標題或訊息內容搜尋對話。測試驗證以字面子字串比對（% _ 與反斜線不當萬用字元）、ASCII 不分大小寫、中文標題與內容都搜得到、每個對話只出現一次、排序與
+925f1ab 完成 F3：軟刪除對話。測試驗證 delete_conversation 回傳 None；刪除後對話不出現在 list 與 search，get、rename、add_me
+0f8aa06 完成 F2：重新命名對話。測試驗證 rename_conversation 會 strip 標題、更新 updated_at（created_at 不變）、回傳更新後的對話
+39be2eb 完成 F1：建立對話、新增訊息、取得對話，以及依 updated_at 由新到舊列出側邊欄對話清單。測試驗證回傳 dict 的鍵、時間格式、標題 strip、ValueEr
+6bd621b Initial setup: feature_list.json, init.sh, and project structure（初始化）

@@ -9,5 +9,8 @@ core
 */logs/
 */workdir/
 */workdir.bak-*/
+*/state/
+*/outbox/
+.ruff_cache/
 node_modules/
 .venv/

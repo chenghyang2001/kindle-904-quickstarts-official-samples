@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthropic 客服助理（教材）</title>
+<style>
+  body { margin: 0; background: #fff; color: #111; font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif; }
+  header { padding: 12px 16px; border-bottom: 1px solid #ddd; }
+  h1 { font-size: 1.25rem; margin: 0 0 4px; }
+  h2 { font-size: 1rem; margin: 0 0 8px; }
+  .sub { color: #666; font-size: 0.85rem; }
+  .layout { display: grid; grid-template-columns: 260px 1fr 280px; gap: 12px; padding: 12px 16px; }
+  aside, #chat-col { border: 1px solid #ddd; border-radius: 8px; padding: 12px; min-height: 420px; }
+  aside { font-size: 0.85rem; line-height: 1.5; }
+  .field { margin-bottom: 10px; }
+  .label { color: #666; font-size: 0.8rem; }
+  .value { white-space: pre-wrap; word-break: break-word; }
+  .tag { display: inline-block; border: 1px solid #bbb; border-radius: 4px; padding: 0 6px; margin: 2px 4px 2px 0; }
+  .dropped { color: #a00; }
+  .source { border: 1px solid #ddd; border-radius: 6px; padding: 8px; margin-bottom: 8px; }
+  .source.hidden-by-official { color: #888; border-style: dashed; }
+  #chat { min-height: 300px; }
+  .msg { margin: 10px 0; padding: 10px 12px; border-radius: 8px; line-height: 1.6; white-space: pre-wrap; }
+  .user { background: #f2f2f2; margin-left: 15%; }
+  .bot { border: 1px solid #ddd; margin-right: 10%; }
+  .redirect { border: 1px solid #111; border-radius: 4px; padding: 4px 8px; margin-top: 6px; font-size: 0.85rem; }
+  .error { color: #a00; }
+  .dry { border: 1px solid #a00; color: #a00; padding: 4px 8px; border-radius: 4px; margin-bottom: 8px; display: none; }
+  .suggest button { font-size: 0.85rem; padding: 4px 8px; margin: 4px 4px 0 0; border: 1px solid #bbb; background: #fff; border-radius: 6px; cursor: pointer; }
+  form { display: flex; gap: 8px; margin-top: 12px; }
+  input { flex: 1; padding: 10px; font-size: 1rem; border: 1px solid #bbb; border-radius: 6px; }
+  #send { padding: 10px 16px; font-size: 1rem; background: #fff; border: 1px solid #111; border-radius: 6px; cursor: pointer; }
+  #send:disabled { color: #999; border-color: #ccc; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Anthropic 客服助理（官方範例題材，教材版）</h1>
+  <div class="sub">知識庫是「虛構但照官方格式」的教材內容，不代表 Anthropic 真實政策、價格或規定。只在 127.0.0.1 示範。</div>
+</header>
+<main class="layout">
+  <aside id="left" aria-label="助理狀態">
+    <h2>助理狀態（左欄）</h2>
+    <div class="field"><div class="label">user_mood（情緒）</div><div class="value" id="mood">—</div></div>
+    <div class="field"><div class="label">matched_categories（分類）</div><div class="value" id="cats">—</div></div>
+    <div class="field"><div class="label">debug.context_used</div><div class="value" id="ctx">—</div></div>
+    <div class="field"><div class="label">thinking</div><div class="value" id="thinking">—</div></div>
+  </aside>
+  <section id="chat-col" aria-label="對話">
+    <div class="dry" id="dry">乾跑：這是寫死的假回覆，不是模型的回答</div>
+    <div id="chat" aria-live="polite"></div>
+    <form id="ask-form">
+      <input id="question" maxlength="500" placeholder="例如：我要怎麼申請退款？" aria-label="輸入問題" autocomplete="off">
+      <button id="send" type="submit">送出</button>
+    </form>
+  </section>
+  <aside id="right" aria-label="知識庫來源">
+    <h2>來源（右欄）</h2>
+    <div class="sub">模型看了全部；官方畫面只顯示第 1 筆（.slice(0, 1)），其餘以虛線標示。</div>
+    <div id="sources"></div>
+  </aside>
+</main>
+<script>
+  // 全部用 textContent：使用者輸入與模型回覆都可能含 HTML，不能用 innerHTML（防 XSS）
+  const history = [];   // 多輪 messages，照官方請求格式 {role, content}
+  const chat = document.getElementById("chat");
+  const input = document.getElementById("question");
+  const sendBtn = document.getElementById("send");
+
+  function el(parent, tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    parent.appendChild(node);
+    return node;
+  }
+
+  function setText(id, text) { document.getElementById(id).textContent = text; }
+
+  function showSidebars(data) {
+    setText("mood", data.user_mood ?? "—");
+    setText("ctx", String(data.debug?.context_used ?? "—"));
+    setText("thinking", data.thinking ?? "—");
+    const cats = document.getElementById("cats");
+    cats.textContent = "";
+    (data.matched_categories ?? []).forEach((c) => el(cats, "span", "tag", c));
+    if (!(data.matched_categories ?? []).length) cats.textContent = "（無）";
+    (data.dropped_categories ?? []).forEach((c) => el(cats, "div", "dropped", `已刪除不在分類表的 id：${c}`));
+    const box = document.getElementById("sources");
+    box.textContent = "";
+    const sources = data.rag_sources ?? [];
+    if (!sources.length) el(box, "div", "sub", "沒有檢索到片段（No information found for this query.）");
+    sources.forEach((s) => {
+      const card = el(box, "div", s.shown_by_official ? "source" : "source hidden-by-official");
+      el(card, "div", "label", `${s.fileName}｜${s.id}｜分數 ${s.score}${s.shown_by_official ? "" : "｜官方不顯示"}`);
+      el(card, "div", "value", s.snippet);
+    });
+  }
+
+  function showReply(data) {
+    const box = el(chat, "div", "msg bot", data.response ?? "（沒有回答）");
+    const redirect = data.redirect_to_agent;
+    if (redirect?.should_redirect === true) el(box, "div", "redirect", `已轉真人客服：${redirect.reason ?? "（未提供原因）"}`);
+    const suggest = el(box, "div", "suggest");
+    (data.suggested_questions ?? []).forEach((q) => {
+      const btn = el(suggest, "button", "", q);
+      btn.type = "button";
+      btn.addEventListener("click", () => send(q));
+    });
+    document.getElementById("dry").style.display = data.dry_run ? "block" : "none";
+    showSidebars(data);
+  }
+
+  async function send(question) {
+    history.push({ role: "user", content: question });
+    el(chat, "div", "msg user", question);
+    const waiting = el(chat, "div", "msg bot sub", "查詢中…（約 10～30 秒）");
+    sendBtn.disabled = true;
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: history.slice(-10) }),
+      });
+      const data = await res.json();
+      waiting.remove();
+      if (res.status === 400) { history.pop(); el(chat, "div", "msg bot error", `輸入有誤：${data.error ?? res.status}`); return; }
+      history.push({ role: "assistant", content: data.response ?? "" });
+      if (!res.ok) { el(chat, "div", "msg bot error", data.response ?? `伺服器錯誤 ${res.status}`); return; }
+      showReply(data);
+    } catch (err) {
+      waiting.remove();
+      history.pop();
+      el(chat, "div", "msg bot error", `連線失敗，請稍後再試（${err.message}）`);
+    } finally {
+      sendBtn.disabled = false;
+    }
+  }
+
+  document.getElementById("ask-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const question = input.value.trim();
+    if (!question) { el(chat, "div", "msg bot error", "請先輸入問題"); return; }
+    input.value = "";
+    send(question);
+  });
+</script>
+</body>
+</html>

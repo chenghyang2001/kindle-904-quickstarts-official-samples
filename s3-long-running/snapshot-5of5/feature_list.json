@@ -1,0 +1,72 @@
+[
+  {
+    "id": "F1",
+    "category": "functional",
+    "description": "建立對話、新增訊息、取得對話，以及依 updated_at 由新到舊列出側邊欄對話清單。測試驗證回傳 dict 的鍵、時間格式、標題 strip、ValueError／KeyError，以及排序規則（updated_at DESC，同時間依 id DESC）。",
+    "steps": [
+      "Step 1: 以 ChatStore(':memory:') 開庫，create_conversation(now=...) 不給標題，確認 title 為 'New Conversation'、created_at == updated_at == now 的 ISO 字串、is_deleted 為 False，且鍵剛好是 id/title/created_at/updated_at/is_deleted",
+      "Step 2: 標題前後空白會被 strip；空字串或全空白標題要丟 ValueError；get_conversation 取不存在的 id 要丟 KeyError",
+      "Step 3: add_message 回傳訊息 dict，鍵與欄位值正確，並把對話的 updated_at 更新為 now；不合法的 role 丟 ValueError，不存在的對話丟 KeyError",
+      "Step 4: list_conversations 依 updated_at 新到舊排序，同一時間依 id 由大到小；新增訊息後該對話會移到最前面",
+      "Step 5: 用 tempfile 建立的資料庫檔關閉後重開，資料仍在"
+    ],
+    "test_command": "python -m unittest tests.test_f1",
+    "passes": true
+  },
+  {
+    "id": "F2",
+    "category": "functional",
+    "description": "重新命名對話。測試驗證 rename_conversation 會 strip 標題、更新 updated_at（created_at 不變）、回傳更新後的對話並讓它移到清單最前；空標題丟 ValueError，不存在或已刪除的對話丟 KeyError。",
+    "steps": [
+      "Step 1: 建立對話後以新的 now 呼叫 rename_conversation，確認回傳 dict 的 title 已 strip、updated_at 為新的 now、created_at 不變",
+      "Step 2: get_conversation 讀回的資料與 rename 的回傳一致",
+      "Step 3: 原本排在後面的對話改名後移到 list_conversations 最前面",
+      "Step 4: 空字串或全空白標題丟 ValueError，且原標題不變",
+      "Step 5: 不存在或已軟刪除的對話改名時丟 KeyError"
+    ],
+    "test_command": "python -m unittest tests.test_f2",
+    "passes": true
+  },
+  {
+    "id": "F3",
+    "category": "functional",
+    "description": "軟刪除對話。測試驗證 delete_conversation 回傳 None；刪除後對話不出現在 list 與 search，get、rename、add_message 都丟 KeyError，重複刪除或刪除不存在的 id 也丟 KeyError；資料列與訊息仍留在資料庫，is_deleted = 1。",
+    "steps": [
+      "Step 1: 建立兩個對話並刪除其中一個，確認回傳 None，且 list_conversations 只剩另一個",
+      "Step 2: 對已刪除的對話呼叫 get_conversation、rename_conversation、add_message，皆丟 KeyError",
+      "Step 3: 重複刪除或刪除不存在的 id 丟 KeyError",
+      "Step 4: search_conversations 不回傳已刪除的對話",
+      "Step 5: 以 tempfile 資料庫關閉 store 後用 sqlite3 直接查詢，確認該列 is_deleted = 1，訊息也仍存在"
+    ],
+    "test_command": "python -m unittest tests.test_f3",
+    "passes": true
+  },
+  {
+    "id": "F4",
+    "category": "functional",
+    "description": "依標題或訊息內容搜尋對話。測試驗證以字面子字串比對（% _ 與反斜線不當萬用字元）、ASCII 不分大小寫、中文標題與內容都搜得到、每個對話只出現一次、排序與 list 相同、空查詢回傳 []、已刪除的不出現。",
+    "steps": [
+      "Step 1: 搜尋 '50%' 只命中字面含 50% 的對話，不命中 '500'",
+      "Step 2: 搜尋 'a_b' 只命中 'a_b'，不命中 'axb'；含反斜線的查詢也照字面比對",
+      "Step 3: 中文標題（例如「週會紀錄」）與中文訊息內容都搜得到，英文不分大小寫",
+      "Step 4: 標題與多則訊息同時命中時，對話只出現一次；結果依 updated_at DESC、id DESC 排序",
+      "Step 5: 空字串或全空白查詢回傳 []；查詢字串會先 strip；已刪除的對話不出現"
+    ],
+    "test_command": "python -m unittest tests.test_f4",
+    "passes": true
+  },
+  {
+    "id": "F5",
+    "category": "functional",
+    "description": "依日期分組對話清單。測試驗證 group_by_date 以 updated_at 的日期部分與 now.date() 比較，分成 Today、Yesterday、Previous 7 days、Older：跨午夜的昨天 23:59 算 Yesterday，剛好 7 天算 Previous 7 days，8 天算 Older，未來日期算 Today；群組順序固定、群組內保持輸入順序、空群組不出現。",
+    "steps": [
+      "Step 1: now 設為 00:05，昨天 23:59 的對話分到 Yesterday，今天 00:00 的分到 Today",
+      "Step 2: 2 天前與剛好 7 天前分到 Previous 7 days，8 天前分到 Older，未來日期分到 Today",
+      "Step 3: 回傳順序固定為 Today、Yesterday、Previous 7 days、Older，每個群組都是 {'group', 'conversations'} 兩個鍵",
+      "Step 4: 群組內保持輸入順序；沒有對話的群組不出現；空輸入回傳 []",
+      "Step 5: 搭配 ChatStore.list_conversations 的實際輸出也能正確分組"
+    ],
+    "test_command": "python -m unittest tests.test_f5",
+    "passes": true
+  }
+]

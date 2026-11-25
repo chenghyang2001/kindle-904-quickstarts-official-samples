@@ -1,0 +1,110 @@
+{
+  "_note": "虛構但照官方格式：欄位名照官方 app_spec.txt 第 215～229 行的 conversations / messages schema（只取本範例用到的欄位）。updated_at 等於最後一則訊息的時間。now 是示範用的固定「現在」。",
+  "now": "2026-11-25T10:00:00",
+  "conversations": [
+    {
+      "id": 1,
+      "title": "花蓮三天兩夜行程",
+      "created_at": "2026-11-25T09:10:00",
+      "updated_at": "2026-11-25T09:30:00",
+      "is_deleted": false,
+      "messages": [
+        {
+          "role": "user",
+          "content": "幫我排花蓮三天兩夜的行程，要有太魯閣。",
+          "created_at": "2026-11-25T09:10:00"
+        },
+        {
+          "role": "assistant",
+          "content": "第一天上午抵達花蓮，下午走太魯閣砂卡礑步道……",
+          "created_at": "2026-11-25T09:30:00"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "折扣怎麼算",
+      "created_at": "2026-11-24T23:50:00",
+      "updated_at": "2026-11-24T23:59:00",
+      "is_deleted": false,
+      "messages": [
+        {
+          "role": "user",
+          "content": "原價 1200 元打 50% off 之後是多少？",
+          "created_at": "2026-11-24T23:50:00"
+        },
+        {
+          "role": "assistant",
+          "content": "50% off 就是半價，600 元。",
+          "created_at": "2026-11-24T23:59:00"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "SQL LIKE 的 _ 萬用字元",
+      "created_at": "2026-11-20T14:00:00",
+      "updated_at": "2026-11-20T14:05:00",
+      "is_deleted": false,
+      "messages": [
+        {
+          "role": "user",
+          "content": "LIKE 'a_c' 為什麼會比對到 abc？",
+          "created_at": "2026-11-20T14:00:00"
+        },
+        {
+          "role": "assistant",
+          "content": "因為 _ 代表任意一個字元；要比對字面的底線得用 ESCAPE。",
+          "created_at": "2026-11-20T14:05:00"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Long-running agent 讀書心得",
+      "created_at": "2026-11-18T08:00:00",
+      "updated_at": "2026-11-18T08:00:00",
+      "is_deleted": false,
+      "messages": [
+        {
+          "role": "user",
+          "content": "整理 autonomous-coding 兩種代理的分工。",
+          "created_at": "2026-11-18T08:00:00"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "上個月的會議紀錄",
+      "created_at": "2026-11-10T16:00:00",
+      "updated_at": "2026-11-10T16:20:00",
+      "is_deleted": false,
+      "messages": [
+        {
+          "role": "user",
+          "content": "幫我把會議重點整理成五點，完成率大約 50 percent。",
+          "created_at": "2026-11-10T16:00:00"
+        },
+        {
+          "role": "assistant",
+          "content": "一、時程延後兩週……",
+          "created_at": "2026-11-10T16:20:00"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "要刪除的測試對話",
+      "created_at": "2026-11-25T08:00:00",
+      "updated_at": "2026-11-25T08:00:00",
+      "is_deleted": false,
+      "messages": [
+        {
+          "role": "user",
+          "content": "這則對話示範軟刪除，裡面也有 50% 這個字。",
+          "created_at": "2026-11-25T08:00:00"
+        }
+      ]
+    }
+  ]
+}

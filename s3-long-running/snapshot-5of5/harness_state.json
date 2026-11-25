@@ -1,0 +1,24 @@
+{
+  "features": {
+    "F1": {
+      "attempts": 1,
+      "last_error": null
+    },
+    "F2": {
+      "attempts": 1,
+      "last_error": null
+    },
+    "F3": {
+      "attempts": 1,
+      "last_error": null
+    },
+    "F4": {
+      "attempts": 1,
+      "last_error": null
+    },
+    "F5": {
+      "attempts": 1,
+      "last_error": null
+    }
+  }
+}
