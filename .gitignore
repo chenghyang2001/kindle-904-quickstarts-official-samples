@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.stackdump
+core
+*.core
+*.dmp
+.env
+*/runs/
+*/logs/
+*/workdir/
+*/workdir.bak-*/
+node_modules/
+.venv/
