@@ -365,7 +365,10 @@ env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONDONTWRITEBYTECODE="1")
 t = subprocess.run([sys.executable, "-m", "unittest", "discover", "-s", "tests"], cwd=target,
                    capture_output=True, text=True, encoding="utf-8", env=env)
 print("=== 全部驗收測試：python -m unittest discover -s tests（結束碼 {}） ===".format(t.returncode))
-print("  " + next((l for l in t.stderr.splitlines() if l.startswith("Ran ")), "") + "｜" + (t.stderr.strip().splitlines() or ["（無輸出）"])[-1])'
+print("  " + next((l for l in t.stderr.splitlines() if l.startswith("Ran ")), "") + "｜" + (t.stderr.strip().splitlines() or ["（無輸出）"])[-1])
+if t.returncode != 0:
+    print("驗收測試沒有全部通過，第 7 步回傳結束碼 1")
+    raise SystemExit(1)'
    show "$P"; ensure_wd; run "$P" ;;
 
 8) banner "三個靈魂拷問：先自己回答"
